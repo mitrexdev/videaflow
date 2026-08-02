@@ -1,0 +1,21 @@
+{
+  "compositionId": "Scene",
+  "output": "out/example.mp4",
+  "props": {
+    "scene": {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "projectId": "00000000-0000-0000-0000-000000000000",
+      "position": 0,
+      "narration": "Videaflow turns a single idea into a complete, publish-ready video.",
+      "visualPrompt": "",
+      "shotType": null,
+      "cameraInstruction": null,
+      "transition": "cut",
+      "durationMs": 5000,
+      "voiceoverAssetId": null,
+      "visualAssetId": null,
+      "status": "ready",
+      "meta": {}
+    }
+  }
+}

@@ -1,0 +1,32 @@
+# Node
+node_modules/
+.next/
+dist/
+.turbo/
+coverage/
+*.tsbuildinfo
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Media / build artifacts
+*.mp4
+*.webm
+output/
+tmp/

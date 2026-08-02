@@ -1,0 +1,21 @@
+[project]
+name = "videaflow-orchestrator"
+version = "0.1.0"
+description = "Videaflow AI orchestration library — swappable providers + workflows"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.9.0",
+  "litellm>=1.50.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["orchestrator*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

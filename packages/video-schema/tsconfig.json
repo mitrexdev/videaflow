@@ -1,0 +1,7 @@
+{
+  "extends": "@videaflow/tsconfig/base.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": ["src"]
+}

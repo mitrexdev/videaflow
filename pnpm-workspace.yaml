@@ -1,0 +1,8 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+  - "services/render"
+allowBuilds:
+  '@clerk/shared': true
+  esbuild: true
+  sharp: true
