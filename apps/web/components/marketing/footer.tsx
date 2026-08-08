@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Play } from "lucide-react";
 import { footerColumns } from "../../lib/marketing";
+import { Logo } from "@/components/logo";
 
 // lucide dropped brand icons, so brand marks are inline SVGs.
 const socials = [
@@ -28,17 +28,14 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 py-16">
+    <footer className="border-t border-hairline py-16">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-10 lg:grid-cols-[1.5fr_2fr]">
           <div>
-            <Link href="/" className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-fuchsia-500">
-                <Play className="h-4 w-4 fill-white text-white" />
-              </span>
-              <span className="text-lg font-bold tracking-tight text-white">Videaflow</span>
+            <Link href="/" className="flex items-center">
+              <Logo className="h-8 w-auto" />
             </Link>
-            <p className="mt-4 max-w-sm text-sm text-slate-500">
+            <p className="mt-4 max-w-sm text-sm text-body">
               The AI-powered creator operating system. Turn an idea into a complete, publish-ready
               video package.
             </p>
@@ -48,7 +45,7 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/5 bg-slate-900/40 text-slate-400 transition hover:text-white"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-strong text-body transition hover:text-ink"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
                     <path d={social.path} />
@@ -61,11 +58,11 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {footerColumns.map((column) => (
               <div key={column.title}>
-                <h3 className="text-sm font-semibold text-white">{column.title}</h3>
+                <h3 className="text-sm font-semibold text-ink">{column.title}</h3>
                 <ul className="mt-4 space-y-2.5">
                   {column.links.map((link) => (
                     <li key={link}>
-                      <a href="#" className="text-sm text-slate-500 transition hover:text-slate-300">
+                      <a href="#" className="text-sm text-body transition hover:text-ink">
                         {link}
                       </a>
                     </li>
@@ -76,9 +73,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 sm:flex-row">
-          <p className="text-sm text-slate-600">© {new Date().getFullYear()} Videaflow. All rights reserved.</p>
-          <p className="text-sm text-slate-600">Made for creators, everywhere.</p>
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-hairline pt-8 sm:flex-row">
+          <p className="text-sm text-body">© {new Date().getFullYear()} Videaflow. All rights reserved.</p>
+          <p className="text-sm text-body">Made for creators, everywhere.</p>
         </div>
       </div>
     </footer>

@@ -31,16 +31,16 @@ export function HowItWorks() {
             {flow.map((step, i) => (
               <div key={step} className="flex items-center gap-2">
                 <span
-                  className={`rounded-xl px-4 py-2 text-sm font-semibold ${
+                  className={`rounded-full px-4 py-2 text-sm font-medium ${
                     i === 0 || i === flow.length - 1
-                      ? "bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white"
-                      : "border border-slate-800 bg-slate-900 text-slate-300"
+                      ? "bg-primary text-primary-foreground"
+                      : "border border-hairline bg-card text-body"
                   }`}
                 >
                   {step}
                 </span>
                 {i < flow.length - 1 ? (
-                  <ArrowRight className="h-4 w-4 text-slate-600" />
+                  <ArrowRight className="h-4 w-4 text-body" />
                 ) : null}
               </div>
             ))}
@@ -51,15 +51,15 @@ export function HowItWorks() {
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {pipelineSteps.map((step, i) => (
             <MotionReveal key={step.title} delay={i * 0.08}>
-              <div className="h-full rounded-2xl border border-white/5 bg-slate-900/40 p-6 transition hover:border-slate-700">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/15">
-                  <step.icon className="h-5 w-5 text-indigo-400" />
+              <div className="h-full rounded-xl border border-hairline bg-card p-6 shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition hover:border-hairline-strong">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-strong">
+                  <step.icon className="h-5 w-5 text-ink" />
                 </div>
-                <p className="mt-4 text-xs font-medium uppercase tracking-wider text-slate-500">
+                <p className="mt-4 text-xs font-medium uppercase tracking-wider text-body">
                   Step {i + 1}
                 </p>
-                <h3 className="mt-1 font-semibold text-white">{step.title}</h3>
-                <p className="mt-2 text-sm text-slate-400">{step.description}</p>
+                <h3 className="mt-1 font-semibold text-ink">{step.title}</h3>
+                <p className="mt-2 text-sm text-body">{step.description}</p>
               </div>
             </MotionReveal>
           ))}
@@ -67,14 +67,14 @@ export function HowItWorks() {
 
         {/* Checkpoints */}
         <MotionReveal delay={0.15} className="mt-12">
-          <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-indigo-400/20 bg-indigo-500/5 p-6 sm:flex-row sm:gap-8">
+          <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-hairline bg-surface-strong/50 p-6 sm:flex-row sm:gap-8">
             {[
               "Review your scenes before any visuals are generated",
               "Regenerate a single scene — never the whole video",
               "Every export is yours to edit",
             ].map((point) => (
-              <span key={point} className="flex items-center gap-2 text-sm text-slate-300">
-                <Check className="h-4 w-4 text-indigo-400" />
+              <span key={point} className="flex items-center gap-2 text-sm text-body">
+                <Check className="h-4 w-4 text-ink" />
                 {point}
               </span>
             ))}

@@ -20,20 +20,20 @@ export function Pricing() {
         />
 
         <MotionReveal delay={0.1} className="mt-8 flex items-center justify-center gap-3">
-          <span className={`text-sm ${yearly ? "text-slate-400" : "text-white"}`}>Monthly</span>
+          <span className={`text-sm ${yearly ? "text-body" : "text-ink"}`}>Monthly</span>
           <button
             type="button"
             role="switch"
             aria-checked={yearly}
             onClick={() => setYearly((v) => !v)}
-            className={`relative h-7 w-12 rounded-full transition ${yearly ? "bg-indigo-500" : "bg-slate-700"}`}
+            className={`relative h-7 w-12 rounded-full transition ${yearly ? "bg-primary" : "bg-input"}`}
           >
             <span
-              className={`absolute top-1 h-5 w-5 rounded-full bg-white transition-all ${yearly ? "left-6" : "left-1"}`}
+              className={`absolute top-1 h-5 w-5 rounded-full bg-primary-foreground shadow-sm transition-all ${yearly ? "left-6" : "left-1"}`}
             />
           </button>
-          <span className={`text-sm ${yearly ? "text-white" : "text-slate-400"}`}>
-            Yearly <span className="text-indigo-400">−20%</span>
+          <span className={`text-sm ${yearly ? "text-ink" : "text-body"}`}>
+            Yearly <span className="text-ink">−20%</span>
           </span>
         </MotionReveal>
 
@@ -43,39 +43,39 @@ export function Pricing() {
             return (
               <MotionReveal key={plan.name} delay={i * 0.08}>
                 <div
-                  className={`relative flex h-full flex-col rounded-3xl border p-7 ${
+                  className={`relative flex h-full flex-col rounded-xl border p-7 ${
                     plan.highlighted
-                      ? "border-indigo-400/40 bg-gradient-to-b from-indigo-500/10 to-slate-900/40 shadow-xl shadow-indigo-900/20"
-                      : "border-white/5 bg-slate-900/40"
+                      ? "border-ink bg-card shadow-[0_8px_40px_rgba(12,10,9,0.1)]"
+                      : "border-hairline bg-card shadow-[0_4px_16px_rgba(0,0,0,0.04)]"
                   }`}
                 >
                   {plan.highlighted ? (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-indigo-500 to-fuchsia-500 px-4 py-1 text-xs font-semibold text-white">
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-medium text-primary-foreground">
                       Most popular
                     </span>
                   ) : null}
 
-                  <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
-                  <p className="mt-1 text-sm text-slate-400">{plan.description}</p>
+                  <h3 className="text-lg font-semibold text-ink">{plan.name}</h3>
+                  <p className="mt-1 text-sm text-body">{plan.description}</p>
 
                   <div className="mt-5 flex items-baseline gap-1">
-                    <span className="text-4xl font-bold text-white">${price}</span>
-                    <span className="text-sm text-slate-500">/ month</span>
+                    <span className="font-heading text-4xl font-normal text-ink">${price}</span>
+                    <span className="text-sm text-body">/ month</span>
                   </div>
                   {yearly && price > 0 ? (
-                    <p className="mt-1 text-xs text-slate-500">billed yearly</p>
+                    <p className="mt-1 text-xs text-body">billed yearly</p>
                   ) : (
-                    <p className="mt-1 text-xs text-slate-500">free forever</p>
+                    <p className="mt-1 text-xs text-body">free forever</p>
                   )}
 
-                  <p className="mt-4 inline-flex w-fit rounded-lg bg-slate-800/60 px-3 py-1 text-xs font-medium text-indigo-300">
+                  <p className="mt-4 inline-flex w-fit rounded-full bg-surface-strong px-3 py-1 text-xs font-medium text-ink">
                     {plan.credits}
                   </p>
 
                   <ul className="mt-6 flex-1 space-y-3">
                     {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-sm text-slate-300">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-indigo-400" />
+                      <li key={feature} className="flex items-start gap-2 text-sm text-body">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-ink" />
                         {feature}
                       </li>
                     ))}
@@ -83,10 +83,10 @@ export function Pricing() {
 
                   <Link
                     href="/signup"
-                    className={`mt-8 rounded-xl px-5 py-3 text-center text-sm font-semibold transition ${
+                    className={`mt-8 rounded-full px-5 py-3 text-center text-sm font-medium transition ${
                       plan.highlighted
-                        ? "bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white hover:opacity-90"
-                        : "border border-slate-700 text-slate-200 hover:bg-slate-800"
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                        : "border border-hairline-strong bg-card text-ink hover:bg-surface-strong"
                     }`}
                   >
                     {plan.cta}
@@ -98,10 +98,10 @@ export function Pricing() {
         </div>
 
         <MotionReveal delay={0.2}>
-          <p className="mt-8 text-center text-sm text-slate-500">
-            Need more? Our <span className="text-slate-300">Business</span> plan adds team seats,
+          <p className="mt-8 text-center text-sm text-body">
+            Need more? Our <span className="text-ink">Business</span> plan adds team seats,
             SSO and dedicated rendering.{" "}
-            <Link href="/signup" className="text-indigo-400 hover:text-indigo-300">
+            <Link href="/signup" className="text-ink hover:opacity-80">
               Talk to us →
             </Link>
           </p>

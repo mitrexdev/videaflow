@@ -1,0 +1,136 @@
+# Render Blueprint — deploys api, worker, and render on every push to main.
+#
+# One-time setup:
+#   1. Render dashboard -> "New" -> "Blueprint" -> connect this GitHub repo.
+#   2. Render reads render.yaml, creates the services below, and auto-deploys
+#      them on every push to main (autoDeploy: true).
+#   3. Add managed Postgres + Redis from the Render dashboard and point the
+#      `sync: false` env vars at them (secrets are never committed to git).
+#
+# Env vars marked `sync: false` must be filled in once, in the Render dashboard,
+# after the first deploy creates the services.
+
+services:
+  # ---------- API: FastAPI + Uvicorn (web) ----------
+  - type: web
+    name: videaflow-api
+    runtime: docker
+    repo: https://github.com/mitrexdev/videaflow
+    plan: starter
+    rootDir: .
+    dockerfilePath: ./services/api/Dockerfile
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_NAME
+        value: videaflow-api
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: CELERY_BROKER_URL
+        sync: false
+      - key: CELERY_RESULT_BACKEND
+        sync: false
+      - key: CLERK_SECRET_KEY
+        sync: false
+      - key: CLERK_JWKS_URL
+        sync: false
+      - key: CLERK_ISSUER
+        sync: false
+      - key: CLERK_AUDIENCE
+        sync: false
+      - key: CLERK_WEBHOOK_SECRET
+        sync: false
+      - key: R2_ACCOUNT_ID
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_BUCKET_NAME
+        value: videaflow-media
+      - key: R2_ENDPOINT_URL
+        sync: false
+      - key: R2_PUBLIC_BASE_URL
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+
+  # ---------- Worker: Celery AI-gen background worker ----------
+  - type: worker
+    name: videaflow-worker
+    runtime: docker
+    repo: https://github.com/mitrexdev/videaflow
+    plan: starter
+    rootDir: .
+    dockerfilePath: ./services/worker/Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: CELERY_BROKER_URL
+        sync: false
+      - key: CELERY_RESULT_BACKEND
+        sync: false
+      - key: R2_ACCOUNT_ID
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_BUCKET_NAME
+        value: videaflow-media
+      - key: R2_ENDPOINT_URL
+        sync: false
+      - key: R2_PUBLIC_BASE_URL
+        sync: false
+      # AI — LLM (set only the ones you use)
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DASHSCOPE_API_KEY
+        sync: false
+      # AI — media providers
+      - key: FAL_KEY
+        sync: false
+      - key: REPLICATE_API_TOKEN
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: DEEPGRAM_API_KEY
+        sync: false
+      - key: SENTRY_DSN
+        sync: false
+
+  # ---------- Render: Remotion MP4 renderer ----------
+  # NOTE: the render service is a one-shot CLI today (`tsx scripts/render.ts`).
+  # The queue wiring that turns it into a long-running job consumer is pending,
+  # so as a Render "worker" it deploys (container + env ready) but exits after
+  # startup. It will become a real consumer once job input lands via the queue.
+  - type: worker
+    name: videaflow-render
+    runtime: docker
+    repo: https://github.com/mitrexdev/videaflow
+    plan: starter
+    rootDir: .
+    dockerfilePath: ./services/render/Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REDIS_URL
+        sync: false

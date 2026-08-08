@@ -35,12 +35,12 @@ export function Showcase() {
             <div className="mt-8 space-y-6">
               {points.map((point) => (
                 <div key={point.title} className="flex gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-500/15">
-                    <point.icon className="h-5 w-5 text-indigo-400" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-strong text-ink">
+                    <point.icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">{point.title}</h3>
-                    <p className="mt-1 text-sm text-slate-400">{point.description}</p>
+                    <h3 className="font-semibold text-ink">{point.title}</h3>
+                    <p className="mt-1 text-sm text-body">{point.description}</p>
                   </div>
                 </div>
               ))}
@@ -49,23 +49,23 @@ export function Showcase() {
 
           {/* Editor mockup */}
           <MotionReveal delay={0.15}>
-            <div className="overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 shadow-2xl shadow-black/50">
-              <div className="flex items-center justify-between border-b border-white/5 px-5 py-3">
+            <div className="overflow-hidden rounded-xl border border-hairline bg-card shadow-[0_8px_40px_rgba(12,10,9,0.08)]">
+              <div className="flex items-center justify-between border-b border-hairline px-5 py-3">
                 <div className="flex gap-1.5">
                   {["Scenes", "Voice", "Captions"].map((tab) => (
                     <span
                       key={tab}
-                      className={`rounded-lg px-3 py-1 text-xs font-medium ${
+                      className={`rounded-full px-3 py-1 text-xs font-medium ${
                         tab === "Voice"
-                          ? "bg-indigo-500/20 text-indigo-300"
-                          : "text-slate-400"
+                          ? "bg-primary text-primary-foreground"
+                          : "text-body"
                       }`}
                     >
                       {tab}
                     </span>
                   ))}
                 </div>
-                <span className="flex items-center gap-1.5 text-xs text-slate-400">
+                <span className="flex items-center gap-1.5 text-xs text-body">
                   <Wand2 className="h-3.5 w-3.5" />
                   Scene 3 / 6
                 </span>
@@ -73,47 +73,47 @@ export function Showcase() {
 
               <div className="space-y-4 p-5">
                 {/* Scene narration */}
-                <div className="rounded-2xl border border-white/5 bg-slate-800/40 p-4">
-                  <p className="text-xs text-slate-500">Scene 3 · narration</p>
-                  <p className="mt-1 text-sm text-slate-200">
+                <div className="rounded-lg border border-hairline bg-surface-strong/50 p-4">
+                  <p className="text-xs text-body">Scene 3 · narration</p>
+                  <p className="mt-1 text-sm text-ink">
                     “In 1956, a summer workshop at Dartmouth changed computing forever…”
                   </p>
                 </div>
 
                 {/* Visual + voice row */}
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl border border-white/5 bg-slate-800/40 p-4">
-                    <p className="text-xs text-slate-500">Visual</p>
-                    <p className="mt-1 text-xs text-slate-300">Retro computer room, warm light</p>
-                    <span className="mt-3 flex items-center gap-1.5 rounded-lg bg-indigo-500/15 px-2.5 py-1.5 text-xs font-medium text-indigo-300">
+                  <div className="rounded-lg border border-hairline bg-surface-strong/50 p-4">
+                    <p className="text-xs text-body">Visual</p>
+                    <p className="mt-1 text-xs text-ink">Retro computer room, warm light</p>
+                    <span className="mt-3 flex w-fit items-center gap-1.5 rounded-full bg-primary px-2.5 py-1.5 text-xs font-medium text-primary-foreground">
                       <RefreshCw className="h-3 w-3" />
                       Regenerate
                     </span>
                   </div>
-                  <div className="rounded-2xl border border-white/5 bg-slate-800/40 p-4">
-                    <p className="text-xs text-slate-500">Voiceover</p>
+                  <div className="rounded-lg border border-hairline bg-surface-strong/50 p-4">
+                    <p className="text-xs text-body">Voiceover</p>
                     <div className="mt-2 flex h-8 items-center gap-[3px]">
                       {[5, 10, 7, 14, 9, 12, 6, 15, 8, 11, 5, 9, 13, 7, 10, 6, 12, 8, 14, 5].map(
                         (h, i) => (
                           <span
                             key={i}
-                            className={`w-1 rounded-full ${i % 3 === 0 ? "bg-indigo-400" : "bg-slate-500/70"}`}
+                            className={`w-1 rounded-full ${i % 3 === 0 ? "bg-primary" : "bg-hairline-strong"}`}
                             style={{ height: `${h * 3}px` }}
                           />
                         ),
                       )}
                     </div>
-                    <p className="mt-2 text-[10px] text-slate-500">5.8s · matches audio exactly</p>
+                    <p className="mt-2 text-[10px] text-body">5.8s · matches audio exactly</p>
                   </div>
                 </div>
 
                 {/* Caption style */}
-                <div className="rounded-2xl border border-white/5 bg-slate-800/40 p-4">
+                <div className="rounded-lg border border-hairline bg-surface-strong/50 p-4">
                   <div className="flex items-center justify-between">
-                    <p className="text-xs text-slate-500">Caption style</p>
-                    <span className="text-[10px] text-slate-500">from Brand Kit</span>
+                    <p className="text-xs text-body">Caption style</p>
+                    <span className="text-[10px] text-body">from Brand Kit</span>
                   </div>
-                  <span className="mt-2 inline-block rounded-lg bg-black/70 px-3 py-1.5 text-sm font-medium text-white">
+                  <span className="mt-2 inline-block rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground">
                     changed computing forever
                   </span>
                 </div>

@@ -19,7 +19,7 @@ function SignOutButton() {
     <button
       type="button"
       onClick={() => signOut({ redirectUrl: "/" })}
-      className="rounded-xl border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800"
+      className="rounded-full border border-hairline-strong px-4 py-2 text-sm font-medium text-body transition hover:bg-surface-strong"
     >
       Sign out
     </button>
@@ -49,8 +49,8 @@ function DashboardInner({
     <main className="mx-auto max-w-5xl px-6 py-12">
       <header className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white">Projects</h1>
-          <p className="mt-1 text-slate-400">Everything you&apos;re creating.</p>
+          <h1 className="font-heading text-3xl font-normal text-ink">Projects</h1>
+          <p className="mt-1 text-body">Everything you&apos;re creating.</p>
         </div>
         <div className="flex items-center gap-3">
           <form
@@ -64,12 +64,12 @@ function DashboardInner({
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Project name"
-              className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-2 text-sm text-white outline-none focus:border-indigo-500"
+              className="rounded-xl border border-hairline-strong bg-card px-4 py-2 text-sm text-ink outline-none placeholder:text-muted-foreground focus:border-ink"
             />
             <button
               type="submit"
               disabled={create.isPending}
-              className="rounded-xl bg-indigo-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-400 disabled:opacity-50"
+              className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 disabled:opacity-50"
             >
               {create.isPending ? "Creating…" : "New project"}
             </button>
@@ -78,9 +78,9 @@ function DashboardInner({
         </div>
       </header>
 
-      {projects.isLoading && <p className="mt-12 text-slate-500">Loading projects…</p>}
+      {projects.isLoading && <p className="mt-12 text-body">Loading projects…</p>}
       {projects.isError && (
-        <p className="mt-12 text-rose-400">
+        <p className="mt-12 text-destructive">
           Could not reach the API. Is the backend running on :8000?
         </p>
       )}
@@ -89,15 +89,15 @@ function DashboardInner({
         {projects.data?.map((project) => (
           <li
             key={project.id}
-            className="rounded-2xl border border-slate-800 bg-slate-900 p-5 transition hover:border-slate-700"
+            className="rounded-xl border border-hairline bg-card p-5 shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition hover:border-hairline-strong"
           >
             <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold text-white">{project.name}</span>
-              <span className="rounded-full bg-slate-800 px-2 py-0.5 text-xs text-slate-300">
+              <span className="text-sm font-semibold text-ink">{project.name}</span>
+              <span className="rounded-full bg-surface-strong px-2 py-0.5 text-xs text-body">
                 {project.status}
               </span>
             </div>
-            <p className="mt-2 text-xs text-slate-500">
+            <p className="mt-2 text-xs text-body">
               {project.aspectRatio} · {project.fps}fps
             </p>
           </li>

@@ -45,12 +45,12 @@ export default function FeaturesPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {details.map((detail, i) => (
               <MotionReveal key={detail.title} delay={i * 0.08}>
-                <div className="h-full rounded-2xl border border-white/5 bg-slate-900/40 p-6">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-500/15">
-                    <detail.icon className="h-5 w-5 text-indigo-400" />
+                <div className="h-full rounded-xl border border-hairline bg-card p-6 shadow-[0_4px_16px_rgba(0,0,0,0.04)]">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-strong text-ink">
+                    <detail.icon className="h-5 w-5" />
                   </div>
-                  <h3 className="mt-5 text-lg font-semibold text-white">{detail.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">{detail.description}</p>
+                  <h3 className="mt-5 text-lg font-semibold text-ink">{detail.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-body">{detail.description}</p>
                 </div>
               </MotionReveal>
             ))}

@@ -19,22 +19,22 @@ export function Faq() {
             const isOpen = open === i;
             return (
               <MotionReveal key={faq.question} delay={i * 0.04}>
-                <div className="overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40">
+                <div className="overflow-hidden rounded-xl border border-hairline bg-card">
                   <button
                     type="button"
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
                     className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                   >
-                    <span className="font-medium text-white">{faq.question}</span>
+                    <span className="font-medium text-ink">{faq.question}</span>
                     <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-slate-400 transition-transform ${
+                      className={`h-5 w-5 shrink-0 text-body transition-transform ${
                         isOpen ? "rotate-180" : ""
                       }`}
                     />
                   </button>
                   {isOpen ? (
-                    <p className="px-6 pb-5 text-sm leading-relaxed text-slate-400">
+                    <p className="px-6 pb-5 text-sm leading-relaxed text-body">
                       {faq.answer}
                     </p>
                   ) : null}
