@@ -68,3 +68,7 @@ AI orchestrator with provider abstraction, Celery worker, Remotion render skelet
 (landing/features/pricing), and **Clerk auth** — themed sign-in/sign-up pages, protected
 dashboard/editor routes, Clerk webhook → Postgres user/org sync, JWT verification in the API.
 Next: the script → storyboard → render vertical slice end-to-end (generation API + assets).
+
+## Codeium E2E test
+
+This repo is used to verify [Codeium](https://github.com/apps/codeium-agent) AI reviews on every push.
