@@ -228,22 +228,53 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-export const footerColumns = [
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
+export interface FooterColumn {
+  title: string;
+  links: FooterLink[];
+}
+
+export const footerColumns: FooterColumn[] = [
   {
     title: "Product",
-    links: ["Features", "Pricing", "Templates", "AI Voices", "Changelog"],
+    links: [
+      { label: "Features", href: "/features" },
+      { label: "Pricing", href: "/#pricing" },
+      { label: "Templates", href: "#" },
+      { label: "AI Voices", href: "#" },
+      { label: "Changelog", href: "#" },
+    ],
   },
   {
     title: "Creators",
-    links: ["How it works", "Video tutorials", "Community", "Affiliates"],
+    links: [
+      { label: "How it works", href: "/#how-it-works" },
+      { label: "Video tutorials", href: "#" },
+      { label: "Community", href: "#" },
+      { label: "Affiliates", href: "#" },
+    ],
   },
   {
     title: "Company",
-    links: ["About", "Blog", "Careers", "Contact"],
+    links: [
+      { label: "About", href: "#" },
+      { label: "Blog", href: "#" },
+      { label: "Careers", href: "#" },
+      { label: "Contact", href: "#" },
+    ],
   },
   {
     title: "Legal",
-    links: ["Privacy", "Terms", "Security", "Licenses"],
+    links: [
+      { label: "Privacy", href: "#" },
+      { label: "Terms", href: "#" },
+      { label: "Security", href: "#" },
+      { label: "Licenses", href: "#" },
+    ],
   },
 ];
 

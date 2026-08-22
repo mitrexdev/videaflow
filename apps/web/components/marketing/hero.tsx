@@ -8,9 +8,9 @@ export function Hero() {
     <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40">
       {/* Ambient pastel gradient orbs */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-gradient-mint/50 blur-[120px]" />
-        <div className="absolute top-24 right-[-160px] h-[360px] w-[360px] rounded-full bg-gradient-lavender/40 blur-[100px]" />
-        <div className="absolute bottom-[-120px] left-[-120px] h-[320px] w-[320px] rounded-full bg-gradient-peach/40 blur-[100px]" />
+        <div className="absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px] animate-pulse-glow" />
+        <div className="absolute top-24 right-[-160px] h-[400px] w-[400px] rounded-full bg-gradient-sky/20 blur-[100px]" />
+        <div className="absolute bottom-[-120px] left-[-120px] h-[360px] w-[360px] rounded-full bg-gradient-lavender/20 blur-[100px]" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6">
@@ -22,8 +22,13 @@ export function Hero() {
         </MotionReveal>
 
         <MotionReveal delay={0.08}>
-          <h1 className="mx-auto mt-6 max-w-4xl text-balance text-center font-heading text-5xl font-normal leading-tight tracking-tight text-ink sm:text-6xl lg:text-7xl">
-            From a single idea to a publish-ready video
+          <h1 className="mx-auto mt-8 max-w-5xl text-balance text-center font-heading text-5xl font-medium leading-[1.1] tracking-tight sm:text-7xl lg:text-8xl">
+            <span className="bg-gradient-to-br from-white via-white to-white/40 bg-clip-text text-transparent">
+              From a single idea to a{" "}
+            </span>
+            <span className="bg-gradient-to-r from-primary via-primary/80 to-gradient-sky bg-clip-text text-transparent">
+              publish-ready video
+            </span>
           </h1>
         </MotionReveal>
 
@@ -39,14 +44,14 @@ export function Hero() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/signup"
-              className="group flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-medium text-primary-foreground transition hover:bg-primary/90 sm:w-auto"
+              className="group flex w-full items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-medium text-primary-foreground shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all hover:scale-105 hover:bg-primary/90 hover:shadow-[0_0_60px_rgba(168,85,247,0.6)] sm:w-auto"
             >
               Start creating free
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/#how-it-works"
-              className="flex w-full items-center justify-center gap-2 rounded-full border border-hairline-strong bg-card px-7 py-3.5 text-base font-medium text-ink transition hover:bg-surface-strong sm:w-auto"
+              className="flex w-full items-center justify-center gap-2 rounded-full border border-hairline bg-card/50 px-8 py-4 text-base font-medium text-ink backdrop-blur-md transition-all hover:bg-surface-strong/80 sm:w-auto"
             >
               <Play className="h-4 w-4" />
               See how it works
@@ -55,10 +60,10 @@ export function Hero() {
         </MotionReveal>
 
         {/* Product mockup */}
-        <MotionReveal delay={0.32} className="relative mt-20">
+        <MotionReveal delay={0.32} className="relative mt-24">
           <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
             {/* Main 16:9 editor preview */}
-            <div className="overflow-hidden rounded-xl border border-hairline bg-card shadow-[0_8px_40px_rgba(12,10,9,0.08)]">
+            <div className="animate-float overflow-hidden rounded-2xl border border-hairline bg-card/40 shadow-[0_8px_40px_rgba(0,0,0,0.4)] backdrop-blur-xl">
               <div className="flex items-center gap-2 border-b border-hairline px-5 py-3">
                 <span className="h-3 w-3 rounded-full bg-rose-500/80" />
                 <span className="h-3 w-3 rounded-full bg-amber-400/80" />
@@ -110,7 +115,7 @@ export function Hero() {
             </div>
 
             {/* Vertical 9:16 phone card */}
-            <div className="mx-auto w-[260px] shrink-0 overflow-hidden rounded-[2rem] border border-hairline bg-card shadow-[0_8px_40px_rgba(12,10,9,0.08)] lg:mx-0">
+            <div className="animate-float mx-auto w-[260px] shrink-0 overflow-hidden rounded-[2.5rem] border-[4px] border-surface-dark bg-card shadow-[0_8px_40px_rgba(0,0,0,0.6)] lg:mx-0" style={{ animationDelay: "1s" }}>
               <div className="relative aspect-[9/16] overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,#312e81_0%,#0b0f19_75%)]" />
                 <div className="absolute inset-x-0 bottom-24 px-4 text-center">

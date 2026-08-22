@@ -4,7 +4,6 @@ import { Palette, Settings2 } from "lucide-react"
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ThemeToggle } from "@/components/ui/theme-toggle"
 
 export default function SettingsPage() {
   return (
@@ -21,26 +20,26 @@ export default function SettingsPage() {
       </TabsList>
 
       <TabsContent value="appearance" className="mt-4">
-        <Card>
-          <CardContent className="space-y-5 py-6">
+        <Card className="rounded-2xl border-hairline bg-card/40 backdrop-blur-xl shadow-lg">
+          <CardContent className="space-y-5 py-8">
             <div>
-              <p className="text-base font-medium">Theme</p>
-              <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-                Choose how Videaflow looks. System follows your device&apos;s
-                light or dark preference.
+              <p className="text-base font-semibold text-ink">Theme</p>
+              <p className="mt-1 max-w-sm text-sm text-body">
+                Videaflow currently uses a forced dark theme for the best viewing experience during video generation.
               </p>
             </div>
-            <ThemeToggle />
           </CardContent>
         </Card>
       </TabsContent>
 
       <TabsContent value="settings" className="mt-4">
-        <Card>
-          <CardContent className="flex flex-col items-center gap-2 py-14 text-center">
-            <Settings2 className="size-8 text-muted-foreground" />
-            <p className="text-base font-medium">Settings</p>
-            <p className="max-w-sm text-sm text-muted-foreground">
+        <Card className="rounded-2xl border-hairline bg-card/40 backdrop-blur-xl shadow-lg">
+          <CardContent className="flex flex-col items-center justify-center gap-2 py-20 text-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-surface-strong shadow-inner">
+              <Settings2 className="h-8 w-8 text-muted-foreground" />
+            </div>
+            <p className="mt-4 text-lg font-semibold text-ink">General Settings</p>
+            <p className="max-w-sm text-sm text-body">
               General workspace settings are coming soon.
             </p>
           </CardContent>

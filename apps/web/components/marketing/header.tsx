@@ -68,8 +68,8 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-hairline bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+    <header className="fixed inset-x-0 top-6 z-50 px-6 transition-all">
+      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between rounded-full border border-hairline bg-card/40 px-6 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <Link href="/" className="flex items-center">
           <Logo className="h-7 w-auto" />
         </Link>

@@ -43,17 +43,22 @@ export function Pricing() {
             return (
               <MotionReveal key={plan.name} delay={i * 0.08}>
                 <div
-                  className={`relative flex h-full flex-col rounded-xl border p-7 ${
+                  className={`relative flex h-full flex-col rounded-2xl transition-all duration-300 hover:-translate-y-2 ${
                     plan.highlighted
-                      ? "border-ink bg-card shadow-[0_8px_40px_rgba(12,10,9,0.1)]"
-                      : "border-hairline bg-card shadow-[0_4px_16px_rgba(0,0,0,0.04)]"
+                      ? "p-[2px] bg-gradient-to-b from-primary via-gradient-sky to-primary shadow-[0_0_40px_rgba(168,85,247,0.25)] hover:shadow-[0_0_60px_rgba(168,85,247,0.4)]"
+                      : "p-[1px] bg-hairline hover:bg-hairline-strong shadow-lg"
                   }`}
                 >
                   {plan.highlighted ? (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-medium text-primary-foreground">
+                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10 rounded-full bg-primary px-4 py-1 text-xs font-medium text-primary-foreground shadow-md whitespace-nowrap">
                       Most popular
                     </span>
                   ) : null}
+                  <div className={`flex h-full flex-col rounded-[14px] p-8 relative ${plan.highlighted ? "bg-background" : "bg-card backdrop-blur-xl"}`}>
+                    {/* Subtle inner glow for highlighted plan */}
+                    {plan.highlighted && (
+                      <div className="absolute inset-0 rounded-[14px] bg-gradient-to-b from-primary/10 to-transparent pointer-events-none" />
+                    )}
 
                   <h3 className="text-lg font-semibold text-ink">{plan.name}</h3>
                   <p className="mt-1 text-sm text-body">{plan.description}</p>
@@ -62,11 +67,13 @@ export function Pricing() {
                     <span className="font-heading text-4xl font-normal text-ink">${price}</span>
                     <span className="text-sm text-body">/ month</span>
                   </div>
-                  {yearly && price > 0 ? (
-                    <p className="mt-1 text-xs text-body">billed yearly</p>
-                  ) : (
-                    <p className="mt-1 text-xs text-body">free forever</p>
-                  )}
+                  <p className="mt-1 text-xs text-body">
+                    {price === 0
+                      ? "free forever"
+                      : yearly
+                        ? "billed yearly"
+                        : "billed monthly"}
+                  </p>
 
                   <p className="mt-4 inline-flex w-fit rounded-full bg-surface-strong px-3 py-1 text-xs font-medium text-ink">
                     {plan.credits}
@@ -83,15 +90,16 @@ export function Pricing() {
 
                   <Link
                     href="/signup"
-                    className={`mt-8 rounded-full px-5 py-3 text-center text-sm font-medium transition ${
+                    className={`mt-8 rounded-full px-6 py-3.5 text-center text-sm font-medium transition-all ${
                       plan.highlighted
-                        ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                        : "border border-hairline-strong bg-card text-ink hover:bg-surface-strong"
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+                        : "border border-hairline bg-surface-strong/30 text-ink hover:bg-surface-strong/80"
                     }`}
                   >
                     {plan.cta}
                   </Link>
                 </div>
+              </div>
               </MotionReveal>
             );
           })}

@@ -62,6 +62,10 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+    
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+    --animate-shimmer: shimmer 2.5s linear infinite;
 }
 
 :root {
@@ -121,58 +125,78 @@
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
+    --background: oklch(0.12 0 0);
     --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
+    --card: oklch(0.16 0 0 / 40%);
     --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
+    --popover: oklch(0.16 0 0 / 80%);
     --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
+    
+    /* Vibrant Neon Purple/Blue for Primary */
+    --primary: oklch(0.65 0.25 285);
+    --primary-foreground: #ffffff;
+    
+    --secondary: oklch(0.20 0 0);
     --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
+    --muted: oklch(0.20 0 0);
     --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
+    --accent: oklch(0.65 0.25 285 / 15%);
     --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
+    --destructive: oklch(0.6 0.2 20);
+    --border: rgba(255,255,255,0.1);
+    --input: rgba(255,255,255,0.1);
+    --ring: oklch(0.65 0.25 285);
+    
+    --chart-1: oklch(0.65 0.25 285);
+    --chart-2: oklch(0.75 0.15 220);
+    --chart-3: oklch(0.85 0.15 180);
+    --chart-4: oklch(0.55 0.20 320);
+    --chart-5: oklch(0.45 0.20 280);
+    
+    --sidebar: oklch(0.14 0 0);
     --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-primary: oklch(0.65 0.25 285);
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: rgba(255,255,255,0.05);
     --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    --sidebar-border: rgba(255,255,255,0.1);
+    --sidebar-ring: oklch(0.65 0.25 285);
 
     /* ElevenLabs editorial tokens — inverted for dark surfaces */
-    --ink: #fafafa;
-    --canvas-soft: #1c1c1c;
-    --surface-strong: #262626;
-    --surface-dark: #0c0a09;
-    --surface-dark-elevated: #1c1917;
-    --hairline: #2b2b2b;
-    --hairline-soft: #262626;
-    --hairline-strong: #3f3f46;
-    --body: #a3a3a3;
-    --body-strong: #d4d4d4;
-    --semantic-success: #4ade80;
+    --ink: #ffffff;
+    --canvas-soft: #0c0a09;
+    --surface-strong: #171717;
+    --surface-dark: #050505;
+    --surface-dark-elevated: #1a1a1a;
+    --hairline: rgba(255,255,255,0.08);
+    --hairline-soft: rgba(255,255,255,0.04);
+    --hairline-strong: rgba(255,255,255,0.15);
+    --body: #a1a1aa;
+    --body-strong: #e4e4e7;
+    --semantic-success: #34d399;
     --semantic-error: #f87171;
 
-    /* Deeper gradient orbs so the glows read on dark */
-    --gradient-mint: #1f6e5a;
-    --gradient-peach: #7c4a35;
-    --gradient-lavender: #4a4a7a;
-    --gradient-sky: #33507a;
-    --gradient-rose: #7a3a4a;
+    /* Vibrant gradient orbs for dark backgrounds */
+    --gradient-mint: #2dd4bf;
+    --gradient-peach: #fb923c;
+    --gradient-lavender: #a78bfa;
+    --gradient-sky: #38bdf8;
+    --gradient-rose: #fb7185;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; transform: scale(1); filter: blur(40px); }
+    50% { opacity: 0.8; transform: scale(1.1); filter: blur(60px); }
+}
+
+@keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
 }
 
 @layer base {

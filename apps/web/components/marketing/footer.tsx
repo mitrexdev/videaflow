@@ -61,10 +61,10 @@ export function Footer() {
                 <h3 className="text-sm font-semibold text-ink">{column.title}</h3>
                 <ul className="mt-4 space-y-2.5">
                   {column.links.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="text-sm text-body transition hover:text-ink">
-                        {link}
-                      </a>
+                    <li key={link.label}>
+                      <Link href={link.href} className="text-sm text-body transition hover:text-ink">
+                        {link.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>

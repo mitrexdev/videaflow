@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useUser } from "@clerk/nextjs"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { LogOut, Settings2, UserRound } from "lucide-react"
+import { LogOut, Settings2, UserRound, PanelLeftOpen } from "lucide-react"
 import {
   AiMicIcon,
   Folder01Icon,
@@ -40,6 +40,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
+  SidebarTrigger,
+  useSidebar,
 } from "@/components/ui/sidebar"
 
 const workspaceItems = [
@@ -52,6 +54,7 @@ const workspaceItems = [
 export function AppSidebar() {
   const pathname = usePathname()
   const { user } = useUser()
+  const { state, toggleSidebar } = useSidebar()
   const [signOutOpen, setSignOutOpen] = useState(false)
 
   const initial =
@@ -60,18 +63,27 @@ export function AppSidebar() {
     "V"
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" variant="floating" className="shadow-lg backdrop-blur-xl bg-sidebar/50 border-hairline mt-6 ml-4 h-[calc(100svh-48px)]">
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" render={<Link href="/" />}>
-              {/* Expanded: full wordmark logo */}
-              <Logo className="h-6 w-auto shrink-0 group-data-[collapsible=icon]:hidden" />
-              {/* Collapsed: square tile with logo */}
-              <div className="hidden aspect-square size-8 items-center justify-center overflow-hidden rounded-lg bg-sidebar-accent p-1.5 group-data-[collapsible=icon]:flex">
-                <Logo className="h-full w-full object-contain" />
-              </div>
-            </SidebarMenuButton>
+          <SidebarMenuItem className="flex items-center justify-between">
+            {state === "collapsed" ? (
+              <button 
+                onClick={toggleSidebar}
+                title="Expand sidebar"
+                className="group relative flex aspect-square size-8 items-center justify-center overflow-hidden rounded-lg bg-sidebar-accent p-1.5 transition-colors hover:bg-sidebar-accent/80"
+              >
+                <Logo className="h-full w-full object-contain transition-opacity group-hover:opacity-0" />
+                <PanelLeftOpen className="absolute h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100 text-sidebar-foreground" />
+              </button>
+            ) : (
+              <>
+                <SidebarMenuButton size="lg" render={<Link href="/" />} className="w-auto hover:bg-transparent hover:text-inherit">
+                  <Logo className="h-6 w-auto shrink-0" />
+                </SidebarMenuButton>
+                <SidebarTrigger className="-mr-1" />
+              </>
+            )}
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

@@ -33,8 +33,8 @@ export function HowItWorks() {
                 <span
                   className={`rounded-full px-4 py-2 text-sm font-medium ${
                     i === 0 || i === flow.length - 1
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-hairline bg-card text-body"
+                      ? "bg-primary text-primary-foreground shadow-[0_0_15px_rgba(168,85,247,0.5)]"
+                      : "border border-hairline bg-card/50 backdrop-blur-sm text-body"
                   }`}
                 >
                   {step}
@@ -51,15 +51,18 @@ export function HowItWorks() {
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {pipelineSteps.map((step, i) => (
             <MotionReveal key={step.title} delay={i * 0.08}>
-              <div className="h-full rounded-xl border border-hairline bg-card p-6 shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition hover:border-hairline-strong">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-strong">
-                  <step.icon className="h-5 w-5 text-ink" />
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-hairline bg-card/40 p-6 shadow-lg backdrop-blur-md transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_8px_30px_rgba(168,85,247,0.15)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="relative">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/60 text-white shadow-inner">
+                    <step.icon className="h-6 w-6" />
+                  </div>
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-primary">
+                    Step {i + 1}
+                  </p>
+                  <h3 className="mt-2 text-lg font-semibold text-ink group-hover:text-primary transition-colors">{step.title}</h3>
+                  <p className="mt-2 text-sm text-body">{step.description}</p>
                 </div>
-                <p className="mt-4 text-xs font-medium uppercase tracking-wider text-body">
-                  Step {i + 1}
-                </p>
-                <h3 className="mt-1 font-semibold text-ink">{step.title}</h3>
-                <p className="mt-2 text-sm text-body">{step.description}</p>
               </div>
             </MotionReveal>
           ))}
@@ -67,7 +70,7 @@ export function HowItWorks() {
 
         {/* Checkpoints */}
         <MotionReveal delay={0.15} className="mt-12">
-          <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-hairline bg-surface-strong/50 p-6 sm:flex-row sm:gap-8">
+          <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-hairline bg-card/30 backdrop-blur-md p-6 sm:flex-row sm:gap-8 shadow-lg">
             {[
               "Review your scenes before any visuals are generated",
               "Regenerate a single scene — never the whole video",

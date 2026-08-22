@@ -33,7 +33,7 @@ export default function ProfilePage() {
   return (
     <div className="flex flex-1 flex-col gap-4">
       {/* Profile header */}
-      <Card>
+      <Card className="rounded-2xl border-hairline bg-card/40 backdrop-blur-xl shadow-lg">
         <CardContent className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <div className="flex min-w-0 flex-1 items-center gap-4">
             <Avatar size="lg" className="size-16 shrink-0">
@@ -74,17 +74,17 @@ export default function ProfilePage() {
       </Card>
 
       {/* Generated videos */}
-      <Card className="flex-1">
+      <Card className="flex-1 rounded-2xl border-hairline bg-card/40 backdrop-blur-xl shadow-lg">
         <CardHeader>
           <CardTitle>Your videos</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col items-center justify-center gap-2 rounded-xl border border-dashed px-6 py-16 text-center">
-            <div className="flex size-10 items-center justify-center rounded-full bg-muted">
-              <Video className="size-5 text-muted-foreground" />
+          <div className="flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-hairline bg-card/20 p-16 text-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-surface-strong shadow-inner">
+              <Video className="h-8 w-8 text-muted-foreground" />
             </div>
-            <p className="text-base font-medium">No videos yet</p>
-            <p className="max-w-sm text-sm text-muted-foreground">
+            <p className="mt-4 text-lg font-semibold text-ink">No videos yet</p>
+            <p className="max-w-sm text-sm text-body">
               Videos you generate will show up here. Start with a new project in the
               editor.
             </p>

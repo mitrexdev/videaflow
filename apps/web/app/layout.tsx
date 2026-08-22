@@ -2,15 +2,13 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { clerkConfigured } from "../lib/auth";
 import "./globals.css";
-import { EB_Garamond, Inter } from "next/font/google";
+import { Outfit, Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 
-// Inter = body. EB Garamond = editorial display serif (Waldenburg substitute).
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const ebGaramond = EB_Garamond({
+const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "500"],
   variable: "--font-display",
 });
 
@@ -39,21 +37,21 @@ export default function RootLayout({
   );
 
   return (
-    <html
-      lang="en"
-      className={cn("font-sans", inter.variable, ebGaramond.variable)}
-      suppressHydrationWarning
-    >
-      <body className="min-h-screen bg-background text-foreground antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {content}
-        </ThemeProvider>
-      </body>
-    </html>
+      <html
+        lang="en"
+        className={cn("font-sans", inter.variable, outfit.variable, "dark")}
+        suppressHydrationWarning
+      >
+        <body className="min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            forcedTheme="dark"
+            disableTransitionOnChange
+          >
+            {content}
+          </ThemeProvider>
+        </body>
+      </html>
   );
 }

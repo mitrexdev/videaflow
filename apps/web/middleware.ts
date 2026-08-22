@@ -1,19 +1,29 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
 // Inlined at build time. Without keys the app runs in dev mode (no protection).
 const clerkConfigured = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
 
-const isProtected = createRouteMatcher(["/dashboard(.*)", "/editor(.*)"]);
+/** Routes that require authentication. */
+const PROTECTED_PREFIXES = ["/dashboard", "/editor"];
 
-const clerkGuard = clerkMiddleware(
-  async (auth, req) => {
-    if (isProtected(req)) await auth.protect();
-    return NextResponse.next();
-  },
-  // Redirect unauthenticated users to our /login route (not Clerk's /sign-in).
-  { signInUrl: "/login" },
-);
+function isProtectedRoute(pathname: string): boolean {
+  return PROTECTED_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+  );
+}
+
+const clerkGuard = clerkMiddleware(async (auth, req) => {
+  if (isProtectedRoute(req.nextUrl.pathname)) {
+    const { userId } = await auth();
+    if (!userId) {
+      const loginUrl = new URL("/login", req.url);
+      loginUrl.searchParams.set("redirect_url", req.nextUrl.pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+  return NextResponse.next();
+});
 
 function passthrough(_req: NextRequest) {
   return NextResponse.next();

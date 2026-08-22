@@ -43,7 +43,7 @@ class Settings(BaseSettings):
     clerk_audience: str | None = None
     clerk_webhook_secret: str | None = None
 
-    cors_origins: str = "http://localhost:3000,http://localhost:5173"
+    cors_origins: str = "http://localhost:3000,http://localhost:3001,http://localhost:5173"
 
     # Cloudflare R2 (S3-compatible object storage)
     r2_account_id: str | None = None
